@@ -1,0 +1,35 @@
+{
+  "name": "@dashly/core",
+  "version": "0.0.0",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "sideEffects": false,
+  "license": "MIT",
+  "files": [
+    "dist/**"
+  ],
+  "scripts": {
+    "build": "tsup src/index.tsx --format esm,cjs --dts --external react --external react-dom",
+    "dev": "tsup src/index.tsx --format esm,cjs --watch --dts --external react --external react-dom",
+    "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist"
+  },
+  "devDependencies": {
+    "@emotion/react": "^11.10.5",
+    "@mantine/core": "^5.10.0",
+    "@mantine/hooks": "^5.10.0",
+    "@mantine/utils": "^5.10.0",
+    "@types/react": "^18.0.17",
+    "@types/react-dom": "^18.0.6",
+    "react": "^18.2.0",
+    "react-icons": "^4.7.1",
+    "react-virtuoso": "^4.0.3",
+    "ts-toolbelt": "^9.6.0",
+    "@dashly/tsconfig": "workspace:*",
+    "tsup": "^6.5.0",
+    "typescript": "^4.5.2"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

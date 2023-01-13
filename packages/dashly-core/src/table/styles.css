@@ -1,0 +1,32 @@
+:root {
+  --menu-column: 2rem;
+  --status-column: 5rem;
+  --serial-column: 2.6rem;
+  --avatar-column: 3.8rem;
+}
+
+.virtual-wrapper {
+  font-size: 14.5px;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.virtual-row-wrapper:not(:first-child) {
+  padding-top: 0.3rem;
+}
+
+.virtual-row-wrapper:not(:last-child) {
+  padding-bottom: 0.3rem;
+}
+
+.virtual-sl-no {
+  font-size: 12px;
+  margin-left: 7px;
+}
+
+.truncate {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
