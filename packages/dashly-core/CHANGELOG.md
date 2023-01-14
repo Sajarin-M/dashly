@@ -1,5 +1,12 @@
 # @dashly/core
 
+## 0.4.3
+
+### Patch Changes
+
+- c553720: [hooks] : add missing lock config
+- 68569f8: [hooks] : fix invalid bundling
+
 ## 0.4.2
 
 ### Patch Changes
