@@ -1,5 +1,11 @@
 # @dashly/hooks
 
+## 0.4.2
+
+### Patch Changes
+
+- 7a58c49: [hooks/use-filter] : fix exports
+
 ## 0.4.1
 
 ### Patch Changes
