@@ -26,8 +26,7 @@ import type { PolymorphicComponentProps } from '@mantine/utils';
 import type { Object } from 'ts-toolbelt';
 import type { AvatarProps } from './avatar';
 import { Menu, MenuButton, MenuItem, menuItems } from './menu';
-
-const useOnlineStatus = () => true;
+import { useOnlineStatus } from '@dashly/hooks';
 
 interface FCWithChildren {
   children?: ReactNode;

@@ -10,8 +10,8 @@
     "dist/**"
   ],
   "scripts": {
-    "build": "tsup src/index.tsx --format esm,cjs --dts --external react --external react-dom --external @emotion/react --external @mantine/core --external @mantine/hooks --external @mantine/utils --external react-icons --external react-virtuoso",
-    "dev": "tsup src/index.tsx --format esm,cjs --watch --dts --external react --external react-dom --external @emotion/react --external @mantine/core --external @mantine/hooks --external @mantine/utils --external react-icons --external react-virtuoso",
+    "build": "tsup src/index.tsx --format esm,cjs --dts --external react --external react-dom --external @emotion/react --external @mantine/core --external @mantine/hooks --external @mantine/utils --external react-icons --external react-virtuoso --external @dashly-hooks",
+    "dev": "tsup src/index.tsx --format esm,cjs --watch --dts --external react --external react-dom --external @emotion/react --external @mantine/core --external @mantine/hooks --external @mantine/utils --external react-icons --external react-virtuoso --external @dashly-hooks",
     "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist"
   },
   "devDependencies": {
@@ -26,6 +26,7 @@
     "react-virtuoso": "^4.0.3",
     "ts-toolbelt": "^9.6.0",
     "@dashly/tsconfig": "workspace:*",
+    "@dashly/hooks": "workspace:*",
     "tsup": "^6.5.0",
     "typescript": "^4.5.2"
   },

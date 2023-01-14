@@ -48,6 +48,7 @@ importers:
 
   packages/dashly-core:
     specifiers:
+      '@dashly/hooks': workspace:*
       '@dashly/tsconfig': workspace:*
       '@emotion/react': ^11.10.5
       '@mantine/core': ^5.10.0
@@ -62,6 +63,7 @@ importers:
       tsup: ^6.5.0
       typescript: ^4.5.2
     devDependencies:
+      '@dashly/hooks': link:../dashly-hooks
       '@dashly/tsconfig': link:../dashly-tsconfig
       '@emotion/react': 11.10.5_jp5qgyg6plq757v5hojp7ls2oe
       '@mantine/core': 5.10.0_lbfixegkxal6rwioqxubxet6s4
