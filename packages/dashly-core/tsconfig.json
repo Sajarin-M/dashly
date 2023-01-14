@@ -1,5 +1,5 @@
 {
-  "extends": "@dashly/tsconfig/react-library.json",
+  "extends": "@dashly/tsconfig/react.json",
   "include": ["."],
   "exclude": ["dist", "build", "node_modules"]
 }
