@@ -10,15 +10,18 @@
     "dist/**"
   ],
   "scripts": {
-    "build": "tsup src/index.tsx --format esm,cjs --dts --external react --external @mantine/hooks",
-    "dev": "tsup src/index.tsx --format esm,cjs --watch --dts --external react --external @mantine/hooks",
+    "build": "tsup src/index.tsx --format esm,cjs --dts --external react --external react-dom --external @emotion/react --external @mantine/core --external @mantine/hooks --external @mantine/utils",
+    "dev": "tsup src/index.tsx --format esm,cjs --watch --dts --external react --external react-dom --external @emotion/react --external @mantine/core --external @mantine/hooks --external @mantine/utils",
     "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist"
   },
   "devDependencies": {
+    "@emotion/react": "^11.10.5",
+    "@mantine/core": "^5.10.0",
+    "@mantine/hooks": "^5.10.0",
+    "@mantine/utils": "^5.10.0",
     "@types/react": "^18.0.17",
     "@types/react-dom": "^18.0.6",
     "react": "^18.2.0",
-    "@mantine/hooks": "^5.10.0",
     "@dashly/tsconfig": "workspace:*",
     "tsup": "^6.5.0",
     "typescript": "^4.5.2"
