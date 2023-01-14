@@ -8,7 +8,7 @@ import {
 } from 'react';
 import { BiWifiOff } from 'react-icons/bi';
 import { FaBookOpen } from 'react-icons/fa';
-import { Components, Virtuoso, VirtuosoProps } from 'react-virtuoso';
+import { Components, Virtuoso, VirtuosoProps, ItemProps } from 'react-virtuoso';
 import {
   Box,
   BoxProps,
@@ -24,9 +24,8 @@ import {
 } from '@mantine/core';
 import type { PolymorphicComponentProps } from '@mantine/utils';
 import type { Object } from 'ts-toolbelt';
-import type { AvatarProps } from '../avatar';
-import { Menu, MenuButton, MenuItem, menuItems } from '../menu';
-import './styles.css';
+import type { AvatarProps } from './avatar';
+import { Menu, MenuButton, MenuItem, menuItems } from './menu';
 
 const useOnlineStatus = () => true;
 
@@ -54,6 +53,7 @@ type RowHandlerFn<T, R = void> = (row: T) => R;
 export type TableContext = {
   height: number;
   loadMore?: LoadMoreProps;
+  rowWrapperClassName: string;
 };
 
 export type LoadMoreProps = {
@@ -106,6 +106,27 @@ const useStyles = createStyles((theme) => {
   }
 
   return {
+    virtualSlNo: {
+      fontSize: '12px',
+      marginLeft: '7px',
+    },
+
+    virtualWrapper: {
+      fontSize: '14.5px',
+      flexGrow: 1,
+      display: 'flex',
+      flexDirection: 'column',
+    },
+
+    virtualRowWrapper: {
+      '&:not(:first-child)': {
+        paddingTop: '0.3rem',
+      },
+      '&:not(:last-child)': {
+        paddingBottom: '0.3rem',
+      },
+    },
+
     virtualBody: {
       overflowY: 'overlay !important' as any,
 
@@ -132,9 +153,9 @@ function renderCell<T>(rowData: T, column: TableColumn<T>, index: number) {
   if ('path' in column) {
     const value = rowData[column.path] as unknown as string;
     return (
-      <div className='truncate' title={value}>
+      <Text truncate title={value}>
         {value}
-      </div>
+      </Text>
     );
   }
   return column.cell(rowData, index);
@@ -158,6 +179,12 @@ type CreateTableComponentProps = {
   renderImageOnScroll: (url: string) => boolean;
   AvatarComponent: (props: Pick<AvatarProps, 'text' | 'src'>) => JSX.Element;
 };
+
+export enum ColumnSizes {
+  Menu = '2rem',
+  Serial = '2.6rem',
+  Avatar = '3.8rem',
+}
 
 const TableRow = forwardRef<HTMLDivElement, TableRowProps>(
   (
@@ -213,9 +240,12 @@ function TableHeader({ style, ...rest }: BoxComponentProps) {
   );
 }
 
-function TableRowWrapper(props: ComponentProps<'div'>) {
-  return <div {...props} className='virtual-row-wrapper' />;
-}
+const TableRowWrapper = <T,>({
+  context,
+  ...rest
+}: ItemProps<T> & { context?: TableContext } & ComponentProps<'div'>) => {
+  return <div {...rest} className={context?.rowWrapperClassName} />;
+};
 
 function InfoWrapper({ children }: FCWithChildren) {
   return (
@@ -380,7 +410,7 @@ export function createTableComponent({
     let MenuComponent: any = EmptyTableMenu;
 
     if (menu) {
-      gridColumns += ' var(--menu-column)';
+      gridColumns += ' ' + ColumnSizes.Menu;
 
       if (isScrolling) {
         MenuComponent = ScrollingMenu;
@@ -410,7 +440,7 @@ export function createTableComponent({
     }
 
     if (avatar) {
-      gridColumns = 'var(--avatar-column) ' + gridColumns;
+      gridColumns = ColumnSizes.Avatar + ' ' + gridColumns;
       columns = [...columns];
       columns.splice(0, 0, {
         key: 'avatar',
@@ -426,11 +456,11 @@ export function createTableComponent({
     }
 
     if (showSerialNo) {
-      gridColumns = 'var(--serial-column) ' + gridColumns;
+      gridColumns = ColumnSizes.Serial + ' ' + gridColumns;
     }
 
     return (
-      <TypographyStylesProvider className='virtual-wrapper'>
+      <TypographyStylesProvider className={classes.virtualWrapper}>
         {showHeader && (
           <TableHeader
             style={{
@@ -455,7 +485,6 @@ export function createTableComponent({
             {...rest}
             data={data}
             isScrolling={setIsScrolling}
-            context={{ height, loadMore }}
             className={classes.virtualBody}
             atBottomStateChange={(atBottom) => {
               if (atBottom) loadMore?.load();
@@ -463,10 +492,11 @@ export function createTableComponent({
             atBottomThreshold={atBottomThreshold}
             increaseViewportBy={increaseViewportBy}
             components={{
-              Item: TableRowWrapper,
+              Item: TableRowWrapper<T>,
               Footer: Footer || LoadingMoreFooter,
               ...restComponents,
             }}
+            context={{ height, loadMore, rowWrapperClassName: classes.virtualRowWrapper }}
             itemContent={(index, rowData) => {
               const slno = (index + 1) as unknown as string;
               return (
@@ -485,14 +515,14 @@ export function createTableComponent({
                   onClick={onRowClick ? () => onRowClick(rowData) : undefined}
                 >
                   {showSerialNo && (
-                    <div className='virtual-sl-no' title={slno}>
+                    <div className={classes.virtualSlNo} title={slno}>
                       {slno}
                     </div>
                   )}
                   {columns.map((column) => (
-                    <div key={column.key || column.name} style={column.style} className='truncate'>
+                    <Text truncate key={column.key || column.name} style={column.style}>
                       {renderCell(rowData, column, index)}
-                    </div>
+                    </Text>
                   ))}
                   {/* @ts-ignore */}
                   <MenuComponent row={rowData} isScrolling={isScrolling} menuFn={menuFn} />
