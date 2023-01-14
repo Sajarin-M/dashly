@@ -1,6 +1,6 @@
 {
   "name": "@dashly/core",
-  "version": "0.0.0",
+  "version": "0.2.0",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
@@ -10,7 +10,7 @@
     "dist/**"
   ],
   "scripts": {
-    "build": "tsup src/index.tsx --format esm,cjs --dts --external react --external react-dom",
+    "build": "tsup src/index.tsx --format esm,cjs --dts --external react --external react-dom --external @emotion/react --external @mantine/core --external @mantine/hooks --external @mantine/utils --external react-icons --external react-virtuoso",
     "dev": "tsup src/index.tsx --format esm,cjs --watch --dts --external react --external react-dom --external @emotion/react --external @mantine/core --external @mantine/hooks --external @mantine/utils --external react-icons --external react-virtuoso",
     "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist"
   },
