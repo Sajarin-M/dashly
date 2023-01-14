@@ -13,9 +13,10 @@
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "changeset": "changeset",
     "version-packages": "changeset version",
-    "release": "turbo run build && changeset publish",
+    "release": "turbo run lint --filter=docs^... && turbo run build --filter=docs^... && changeset publish",
     "prepare": "husky install",
-    "prettify-staged": "pretty-quick --staged"
+    "prettify-staged": "pretty-quick --staged",
+    "lint": "turbo run lint"
   },
   "devDependencies": {
     "@changesets/cli": "^2.26.0",

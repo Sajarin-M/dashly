@@ -12,7 +12,8 @@
   "scripts": {
     "build": "tsup src/index.tsx --format esm,cjs --dts --external react --external react-dom --external @emotion/react --external @mantine/core --external @mantine/hooks --external @mantine/utils --external react-icons --external react-virtuoso --external @dashly-hooks",
     "dev": "tsup src/index.tsx --format esm,cjs --watch --dts --external react --external react-dom --external @emotion/react --external @mantine/core --external @mantine/hooks --external @mantine/utils --external react-icons --external react-virtuoso --external @dashly-hooks",
-    "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist"
+    "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist",
+    "lint": "tsc"
   },
   "devDependencies": {
     "@emotion/react": "^11.10.5",
