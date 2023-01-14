@@ -40,7 +40,7 @@ type FilterButtonApi = {
   count: number;
 };
 
-export default function useFilter<T extends Record<string, unknown>>({
+export function useFilter<T extends Record<string, unknown>>({
   items,
   validate,
   initialFilter,
