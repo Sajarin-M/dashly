@@ -13,7 +13,7 @@
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "changeset": "changeset",
     "version-packages": "changeset version",
-    "release": "turbo run lint --filter=docs^... && turbo run build --filter=docs^... && changeset publish",
+    "release": "turbo run build --filter=docs^... && changeset publish",
     "prepare": "husky install",
     "prettify-staged": "pretty-quick --staged",
     "lint": "turbo run lint"
