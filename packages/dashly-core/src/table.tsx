@@ -118,7 +118,7 @@ const useStyles = createStyles((theme) => {
     },
 
     virtualRowWrapper: {
-      '&:not(:first-child)': {
+      '&:not(:first-of-type)': {
         paddingTop: '0.3rem',
       },
       '&:not(:last-child)': {
