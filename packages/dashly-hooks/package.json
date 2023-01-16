@@ -10,8 +10,8 @@
     "dist/**"
   ],
   "scripts": {
-    "build": "tsup src/index.tsx --format esm,cjs --dts --external react --external react-dom --external @emotion/react --external @mantine/core --external @mantine/hooks --external @mantine/utils",
-    "dev": "tsup src/index.tsx --format esm,cjs --watch --dts --external react --external react-dom --external @emotion/react --external @mantine/core --external @mantine/hooks --external @mantine/utils",
+    "build": "tsup",
+    "dev": "tsup --watch",
     "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist",
     "lint": "tsc"
   },
