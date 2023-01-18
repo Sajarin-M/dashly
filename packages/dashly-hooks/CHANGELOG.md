@@ -1,5 +1,11 @@
 # @dashly/hooks
 
+## 0.4.6
+
+### Patch Changes
+
+- 67d560f: [core] : optimize table component
+
 ## 0.4.5
 
 ### Patch Changes
