@@ -1,5 +1,11 @@
 # @dashly/hooks
 
+## 0.4.4
+
+### Patch Changes
+
+- 823d4ad: [core] : revert back to css based style
+
 ## 0.4.3
 
 ### Patch Changes
