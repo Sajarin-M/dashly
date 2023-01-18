@@ -124,10 +124,10 @@ const useStyles = createStyles((theme) => {
         borderRadius: theme.radius.md,
       },
       '&::-webkit-scrollbar-thumb': {
-        backgroundColor: theme.fn.rgba(commonBg, 0.4),
+        backgroundColor: theme.fn.rgba(commonBg, 0.3),
         borderRadius: theme.radius.md,
         '&:hover': {
-          backgroundColor: theme.fn.rgba(commonBg, 0.5),
+          backgroundColor: theme.fn.rgba(commonBg, 0.4),
         },
       },
     },
