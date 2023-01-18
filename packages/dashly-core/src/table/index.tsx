@@ -313,6 +313,18 @@ const LoadingMoreFooter: ComponentType<{ context?: TableContext }> = ({ context 
   );
 };
 
+function EmptySeriealNo() {
+  return null;
+}
+
+function SerialNo({ slno }: { slno: number }) {
+  return (
+    <div className='virtual-sl-no' title={slno as unknown as string}>
+      {slno}
+    </div>
+  );
+}
+
 export function createTableComponent({
   getImageUrl,
   renderImageOnScroll,
@@ -384,6 +396,9 @@ export function createTableComponent({
 
     let menuFn: RowHandlerFn<T, MenuItem[]>;
     let MenuComponent: any = EmptyTableMenu;
+    let serialHeader: ReactNode = undefined;
+    let SerialComponent: any = EmptySeriealNo;
+    let onListScrolled: ((isScrolling: boolean) => void) | undefined = undefined;
 
     if (menu) {
       gridColumns += ' ' + ColumnSizes.Menu;
@@ -431,9 +446,24 @@ export function createTableComponent({
       });
     }
 
+    if (avatar?.image || menu) {
+      onListScrolled = (newScrolling) => {
+        if (newScrolling !== isScrolling) setIsScrolling(newScrolling);
+      };
+    }
+
     if (showSerialNo) {
+      SerialComponent = SerialNo;
+      serialHeader = <div>Sl.No.</div>;
       gridColumns = ColumnSizes.Serial + ' ' + gridColumns;
     }
+
+    const refFns = [
+      (node: HTMLDivElement | null) => {
+        const newHeight = node?.getBoundingClientRect().height;
+        if (newHeight) setHeight(newHeight);
+      },
+    ];
 
     return (
       <TypographyStylesProvider className='virtual-wrapper'>
@@ -443,7 +473,7 @@ export function createTableComponent({
               gridTemplateColumns: gridColumns,
             }}
           >
-            {showSerialNo && <div>Sl.No.</div>}
+            {serialHeader}
             {columns.map((column) => (
               <div key={column.key || column.name} style={column.style}>
                 {column.name}
@@ -460,7 +490,7 @@ export function createTableComponent({
           <Virtuoso
             {...rest}
             data={data}
-            isScrolling={setIsScrolling}
+            isScrolling={onListScrolled}
             context={{ height, loadMore }}
             className={classes.virtualBody}
             atBottomStateChange={(atBottom) => {
@@ -474,34 +504,21 @@ export function createTableComponent({
               ...restComponents,
             }}
             itemContent={(index, rowData) => {
-              const slno = (index + 1) as unknown as string;
               return (
                 <TableRow
-                  ref={(node) => {
-                    if (index === 0) {
-                      if (!height) {
-                        const newHeight = node?.getBoundingClientRect().height;
-                        if (newHeight) setHeight(newHeight);
-                      }
-                    }
-                  }}
+                  ref={refFns[index]}
                   style={{
                     gridTemplateColumns: gridColumns,
                   }}
                   onClick={onRowClick ? () => onRowClick(rowData) : undefined}
                 >
-                  {showSerialNo && (
-                    <div className='virtual-sl-no' title={slno}>
-                      {slno}
-                    </div>
-                  )}
+                  <SerialComponent slno={index + 1} />
                   {columns.map((column) => (
                     <div key={column.key || column.name} style={column.style} className='truncate'>
                       {renderCell(rowData, column, index)}
                     </div>
                   ))}
-                  {/* @ts-ignore */}
-                  <MenuComponent row={rowData} isScrolling={isScrolling} menuFn={menuFn} />
+                  <MenuComponent row={rowData} menuFn={menuFn} />
                 </TableRow>
               );
             }}
