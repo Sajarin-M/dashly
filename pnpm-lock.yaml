@@ -4,15 +4,15 @@ importers:
   .:
     specifiers:
       '@changesets/cli': ^2.26.0
-      husky: ^8.0.0
-      prettier: ^2.8.2
+      husky: ^8.0.3
+      prettier: ^2.8.3
       pretty-quick: ^3.1.3
       turbo: ^1.7.0
     devDependencies:
       '@changesets/cli': 2.26.0
       husky: 8.0.3
-      prettier: 2.8.2
-      pretty-quick: 3.1.3_prettier@2.8.2
+      prettier: 2.8.3
+      pretty-quick: 3.1.3_prettier@2.8.3
       turbo: 1.7.0
 
   apps/docs:
@@ -20,22 +20,22 @@ importers:
       '@dashly/core': workspace:*
       '@dashly/tsconfig': workspace:*
       '@emotion/react': ^11.10.5
-      '@mantine/core': ^5.10.0
-      '@mantine/hooks': ^5.10.0
-      '@mantine/utils': ^5.10.0
+      '@mantine/core': ^5.10.1
+      '@mantine/hooks': ^5.10.1
+      '@mantine/utils': ^5.10.1
       '@types/react': ^18.0.26
-      '@types/react-dom': ^18.0.9
-      '@vitejs/plugin-react-swc': ^3.0.0
+      '@types/react-dom': ^18.0.10
+      '@vitejs/plugin-react-swc': ^3.0.1
       react: ^18.2.0
       react-dom: ^18.2.0
-      typescript: ^4.9.3
-      vite: ^4.0.0
+      typescript: ^4.9.4
+      vite: ^4.0.4
     dependencies:
       '@dashly/core': link:../../packages/dashly-core
       '@emotion/react': 11.10.5_jp5qgyg6plq757v5hojp7ls2oe
-      '@mantine/core': 5.10.0_lbfixegkxal6rwioqxubxet6s4
-      '@mantine/hooks': 5.10.0_react@18.2.0
-      '@mantine/utils': 5.10.0_react@18.2.0
+      '@mantine/core': 5.10.1_vmfc4eynrtlwqan3hg7ts62b2m
+      '@mantine/hooks': 5.10.1_react@18.2.0
+      '@mantine/utils': 5.10.1_react@18.2.0
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
     devDependencies:
@@ -51,24 +51,24 @@ importers:
       '@dashly/hooks': workspace:*
       '@dashly/tsconfig': workspace:*
       '@emotion/react': ^11.10.5
-      '@mantine/core': ^5.10.0
-      '@mantine/hooks': ^5.10.0
-      '@mantine/utils': ^5.10.0
-      '@types/react': ^18.0.17
-      '@types/react-dom': ^18.0.6
+      '@mantine/core': ^5.10.1
+      '@mantine/hooks': ^5.10.1
+      '@mantine/utils': ^5.10.1
+      '@types/react': ^18.0.26
+      '@types/react-dom': ^18.0.10
       react: ^18.2.0
       react-icons: ^4.7.1
       react-virtuoso: ^4.0.3
       ts-toolbelt: ^9.6.0
       tsup: ^6.5.0
-      typescript: ^4.5.2
+      typescript: ^4.9.4
     devDependencies:
       '@dashly/hooks': link:../dashly-hooks
       '@dashly/tsconfig': link:../dashly-tsconfig
       '@emotion/react': 11.10.5_jp5qgyg6plq757v5hojp7ls2oe
-      '@mantine/core': 5.10.0_lbfixegkxal6rwioqxubxet6s4
-      '@mantine/hooks': 5.10.0_react@18.2.0
-      '@mantine/utils': 5.10.0_react@18.2.0
+      '@mantine/core': 5.10.1_vmfc4eynrtlwqan3hg7ts62b2m
+      '@mantine/hooks': 5.10.1_react@18.2.0
+      '@mantine/utils': 5.10.1_react@18.2.0
       '@types/react': 18.0.26
       '@types/react-dom': 18.0.10
       react: 18.2.0
@@ -82,20 +82,20 @@ importers:
     specifiers:
       '@dashly/tsconfig': workspace:*
       '@emotion/react': ^11.10.5
-      '@mantine/core': ^5.10.0
-      '@mantine/hooks': ^5.10.0
-      '@mantine/utils': ^5.10.0
-      '@types/react': ^18.0.17
-      '@types/react-dom': ^18.0.6
+      '@mantine/core': ^5.10.1
+      '@mantine/hooks': ^5.10.1
+      '@mantine/utils': ^5.10.1
+      '@types/react': ^18.0.26
+      '@types/react-dom': ^18.0.10
       react: ^18.2.0
       tsup: ^6.5.0
-      typescript: ^4.5.2
+      typescript: ^4.9.4
     devDependencies:
       '@dashly/tsconfig': link:../dashly-tsconfig
       '@emotion/react': 11.10.5_jp5qgyg6plq757v5hojp7ls2oe
-      '@mantine/core': 5.10.0_lbfixegkxal6rwioqxubxet6s4
-      '@mantine/hooks': 5.10.0_react@18.2.0
-      '@mantine/utils': 5.10.0_react@18.2.0
+      '@mantine/core': 5.10.1_vmfc4eynrtlwqan3hg7ts62b2m
+      '@mantine/hooks': 5.10.1_react@18.2.0
+      '@mantine/utils': 5.10.1_react@18.2.0
       '@types/react': 18.0.26
       '@types/react-dom': 18.0.10
       react: 18.2.0
@@ -396,7 +396,7 @@ packages:
       fs-extra: 7.0.1
       lodash.startcase: 4.4.0
       outdent: 0.5.0
-      prettier: 2.8.2
+      prettier: 2.8.3
       resolve-from: 5.0.0
       semver: 5.7.1
     dev: true
@@ -612,7 +612,7 @@ packages:
       '@changesets/types': 5.2.1
       fs-extra: 7.0.1
       human-id: 1.0.2
-      prettier: 2.8.2
+      prettier: 2.8.3
     dev: true
 
   /@emotion/babel-plugin/11.10.5_@babel+core@7.20.12:
@@ -1046,17 +1046,17 @@ packages:
       react: '>=16.8.0'
       react-dom: '>=16.8.0'
     dependencies:
-      '@floating-ui/react-dom': 1.2.0_biqbaboplfbrettd7655fr4n2y
+      '@floating-ui/react-dom': 1.2.1_biqbaboplfbrettd7655fr4n2y
       aria-hidden: 1.2.2_kzbn2opkn2327fwg5yzwzya5o4
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
     transitivePeerDependencies:
       - '@types/react'
 
-  /@floating-ui/react-dom/1.2.0_biqbaboplfbrettd7655fr4n2y:
+  /@floating-ui/react-dom/1.2.1_biqbaboplfbrettd7655fr4n2y:
     resolution:
       {
-        integrity: sha512-o1uQ9gPhgBajY/9T0boFNOw9MoxcuHOnVortmdlGCViM7I/aONbY+G1wejbqydHQ7+9j3p7hIsAUMrr3huV/JQ==,
+        integrity: sha512-YCLlqibZtgUhxUpxkSp1oekvYgH/jI4KdZEJv85E62twlZHN43xdlQNe6JcF4ROD3/Zu6juNHN+aOygN+6yZjg==,
       }
     peerDependencies:
       react: '>=16.8.0'
@@ -1116,20 +1116,20 @@ packages:
       '@jridgewell/resolve-uri': 3.1.0
       '@jridgewell/sourcemap-codec': 1.4.14
 
-  /@mantine/core/5.10.0_lbfixegkxal6rwioqxubxet6s4:
+  /@mantine/core/5.10.1_vmfc4eynrtlwqan3hg7ts62b2m:
     resolution:
       {
-        integrity: sha512-if272RiYPK0nQQdGNwcCSY7bCPJW9455qXlRhnYOr021xh89T8WFVPeDw4uwcxoXsXdKRV5GAi9irSnsUqsjJQ==,
+        integrity: sha512-ZVVrakV8QUFxAUNh8LCyJS6gKKpQbXSh2OQ757L/Q07aYNaYFvgwuSyI7+p32oGrgc+RZ53KroB7zZUVj/hvEw==,
       }
     peerDependencies:
-      '@mantine/hooks': 5.10.0
+      '@mantine/hooks': 5.10.1
       react: '>=16.8.0'
       react-dom: '>=16.8.0'
     dependencies:
       '@floating-ui/react-dom-interactions': 0.10.3_ib3m5ricvtkl2cll7qpr2f6lvq
-      '@mantine/hooks': 5.10.0_react@18.2.0
-      '@mantine/styles': 5.10.0_sogmqz4enknxtkxk3k5s6bqwnq
-      '@mantine/utils': 5.10.0_react@18.2.0
+      '@mantine/hooks': 5.10.1_react@18.2.0
+      '@mantine/styles': 5.10.1_sogmqz4enknxtkxk3k5s6bqwnq
+      '@mantine/utils': 5.10.1_react@18.2.0
       '@radix-ui/react-scroll-area': 1.0.2_biqbaboplfbrettd7655fr4n2y
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
@@ -1138,20 +1138,20 @@ packages:
       - '@emotion/react'
       - '@types/react'
 
-  /@mantine/hooks/5.10.0_react@18.2.0:
+  /@mantine/hooks/5.10.1_react@18.2.0:
     resolution:
       {
-        integrity: sha512-dAefxpvqjFtXNeKse+awkIa4U1XGnMMOqWg1+07Y2Ino2G6EiT8AEnYqQyTXgcPoNaWwG9533Q/DDadmyweqaQ==,
+        integrity: sha512-Fhl2f5z/F+NVzZgPUPP9tP4NUUMeTBpmlmlo3mPuQztw1kmXdxtBjD1MzRS7A84FuaJNo2wxLhQ+Gnjtf3hZ8A==,
       }
     peerDependencies:
       react: '>=16.8.0'
     dependencies:
       react: 18.2.0
 
-  /@mantine/styles/5.10.0_sogmqz4enknxtkxk3k5s6bqwnq:
+  /@mantine/styles/5.10.1_sogmqz4enknxtkxk3k5s6bqwnq:
     resolution:
       {
-        integrity: sha512-3JBM5LWJHb4Yk7jymPiSuaBJRoe2CgA7KoyYWgabwBP115GlHPb1rQCcavJsobHV4U+wFfZEEUnVBpaAaXqgmw==,
+        integrity: sha512-sKJG+shOJMEYlnpLuRd1Qlu0kK9GHpYd85+q+3Wa5/IZ9jLkOeYVxLV1vnhSnhVrIxbQzrti2klSKHZBg3KpIw==,
       }
     peerDependencies:
       '@emotion/react': '>=11.9.0'
@@ -1164,10 +1164,10 @@ packages:
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
 
-  /@mantine/utils/5.10.0_react@18.2.0:
+  /@mantine/utils/5.10.1_react@18.2.0:
     resolution:
       {
-        integrity: sha512-mHnNm0ajIa8qLAIEwv82N6+7YKecynOA3I8vzgBHXS2x4HwGsHITFYGmMh2LNpx5dRL034tObfEFYZXqncyEDw==,
+        integrity: sha512-PfzSpbipAwF5g5zoyC2Htxf2b9TFFwP6c9dK1jlrBzqtkeQK1axZ72Vbc1jKjGWYutVBbOWuk40GKUwYoDFVTw==,
       }
     peerDependencies:
       react: '>=16.8.0'
@@ -1364,10 +1364,10 @@ packages:
       '@babel/runtime': 7.20.7
       react: 18.2.0
 
-  /@swc/core-darwin-arm64/1.3.26:
+  /@swc/core-darwin-arm64/1.3.27:
     resolution:
       {
-        integrity: sha512-FWWflBfKRYrUJtko2xiedC5XCa31O75IZZqnTWuLpe9g3C5tnUuF3M8LSXZS/dn6wprome1MhtG9GMPkSYkhkg==,
+        integrity: sha512-IKlxkhEy99CnP9nduaf5IJWIFcr6D5cZCjYmCs7nWkjMV+aAieyDO9AX4LT8AcHy6CF7ByOX7SKoqk+gVMAaKw==,
       }
     engines: { node: '>=10' }
     cpu: [arm64]
@@ -1376,10 +1376,10 @@ packages:
     dev: true
     optional: true
 
-  /@swc/core-darwin-x64/1.3.26:
+  /@swc/core-darwin-x64/1.3.27:
     resolution:
       {
-        integrity: sha512-0uQeebAtsewqJ2b35aPZstGrylwd6oJjUyAJOfVJNbremFSJ5JzytB3NoDCIw7CT5UQrSRpvD3mU95gfdQjDGA==,
+        integrity: sha512-MtabZIhFf/dL3vs6UMbd+vJsjIkm2NaFqulGV0Jofy2bfVZPTj/b5pXeOlUsTWy7JcH1uixjdx4RvJRyvqJxQA==,
       }
     engines: { node: '>=10' }
     cpu: [x64]
@@ -1388,10 +1388,10 @@ packages:
     dev: true
     optional: true
 
-  /@swc/core-linux-arm-gnueabihf/1.3.26:
+  /@swc/core-linux-arm-gnueabihf/1.3.27:
     resolution:
       {
-        integrity: sha512-06T+LbVFlyciQtwrUB5/a16A1ju1jFoYvd/hq9TWhf7GrtL43U7oJIgqMOPHx2j0+Ps2R3S6R/UUN5YXu618zA==,
+        integrity: sha512-XELMoGcUTAkk+G4buwIIhu6AIr1U418Odt22HUW8+ZvV+Wty2ICgR/myOIhM3xMb6U2L8ay+evMqoVNMQ0RRTg==,
       }
     engines: { node: '>=10' }
     cpu: [arm]
@@ -1400,10 +1400,10 @@ packages:
     dev: true
     optional: true
 
-  /@swc/core-linux-arm64-gnu/1.3.26:
+  /@swc/core-linux-arm64-gnu/1.3.27:
     resolution:
       {
-        integrity: sha512-2NT/0xALPfK+U01qIlHxjkGdIj6F0txhu1U2v6B0YP2+k0whL2gCgYeg9QUvkYEXSD5r1Yx+vcb2R/vaSCSClg==,
+        integrity: sha512-O6vtT6bnrVR9PzEIuA5U7tIfYo7bv97H9K9Vqy2oyHNeGN0H36DKwS4UqPreHtziXNF5+7ubdUYUkrG/j8UnUQ==,
       }
     engines: { node: '>=10' }
     cpu: [arm64]
@@ -1412,10 +1412,10 @@ packages:
     dev: true
     optional: true
 
-  /@swc/core-linux-arm64-musl/1.3.26:
+  /@swc/core-linux-arm64-musl/1.3.27:
     resolution:
       {
-        integrity: sha512-64KrTay9hC0mTvZ1AmEFmNEwV5QDjw9U7PJU5riotSc28I+Q/ZoM0qcSFW9JRRa6F2Tr+IfMtyv8+eB2//BQ5g==,
+        integrity: sha512-Oa0E1i7dOTWpaEZumKoNbTE/Ap+da6nlhqKVUdYrFDrOBi25tz76SdxZIyvAszzmgY89b5yd1naourKmkPXpww==,
       }
     engines: { node: '>=10' }
     cpu: [arm64]
@@ -1424,10 +1424,10 @@ packages:
     dev: true
     optional: true
 
-  /@swc/core-linux-x64-gnu/1.3.26:
+  /@swc/core-linux-x64-gnu/1.3.27:
     resolution:
       {
-        integrity: sha512-Te8G13l3dcRM1Mf3J4JzGUngzNXLKnMYlUmBOYN/ORsx7e+VNelR3zsTLHC0+0jGqELDgqvMyzDfk+dux/C/bQ==,
+        integrity: sha512-S3v9H8oL2a8Ur6AjQyhkC6HfBVPOxKMdBhcZmdNuVgEUHbHdbf/Lka85F9IOYXEarMn0FtQw3ywowS22O9L5Uw==,
       }
     engines: { node: '>=10' }
     cpu: [x64]
@@ -1436,10 +1436,10 @@ packages:
     dev: true
     optional: true
 
-  /@swc/core-linux-x64-musl/1.3.26:
+  /@swc/core-linux-x64-musl/1.3.27:
     resolution:
       {
-        integrity: sha512-nqQWuSM6OTKepUiQ9+rXgERq/JiO72RBOpXKO2afYppsL96sngjIRewV74v5f6IAfyzw+k+AhC5pgRA4Xu/Jkg==,
+        integrity: sha512-6DDkdXlOADpwICFZTRphCR+cIeS8aEYh4NlyzBito0mOWwIIdfCgALzhkTQOzTOkcD42bP97CIoZ97hqV/puOg==,
       }
     engines: { node: '>=10' }
     cpu: [x64]
@@ -1448,10 +1448,10 @@ packages:
     dev: true
     optional: true
 
-  /@swc/core-win32-arm64-msvc/1.3.26:
+  /@swc/core-win32-arm64-msvc/1.3.27:
     resolution:
       {
-        integrity: sha512-xx34mx+9IBV1sun7sxoNFiqNom9wiOuvsQFJUyQptCnZHgYwOr9OI204LBF95dCcBCZsTm2hT1wBnySJOeimYw==,
+        integrity: sha512-baxfH4AbEcaTNo08wxV0W6hiMXwVCxPS4qc0amHpXPti92unvSqeDR1W3C9GjHqzXlWtmCRsq8Ww1pal6ZVLrw==,
       }
     engines: { node: '>=10' }
     cpu: [arm64]
@@ -1460,10 +1460,10 @@ packages:
     dev: true
     optional: true
 
-  /@swc/core-win32-ia32-msvc/1.3.26:
+  /@swc/core-win32-ia32-msvc/1.3.27:
     resolution:
       {
-        integrity: sha512-48LZ/HKNuU9zl8c7qG6IQKb5rBCwmJgysGOmEGzTRBYxAf/x6Scmt0aqxCoV4J02HOs2WduCBDnhUKsSQ2kcXQ==,
+        integrity: sha512-7iLJnH71k5qCwxv9NcM/P7nIEzTsC7r1sIiQW6bu+CpC8qZvwl0PS+XvQRlLly2gCZM+Le98tksYG14MEh+Hrw==,
       }
     engines: { node: '>=10' }
     cpu: [ia32]
@@ -1472,10 +1472,10 @@ packages:
     dev: true
     optional: true
 
-  /@swc/core-win32-x64-msvc/1.3.26:
+  /@swc/core-win32-x64-msvc/1.3.27:
     resolution:
       {
-        integrity: sha512-UPe7S+MezD/S6cKBIc50TduGzmw6PBz1Ms5p+5wDLOKYNS/LSEM4iRmLwvePzP5X8mOyesXrsbwxLy8KHP65Yw==,
+        integrity: sha512-mFM907PDw/jrQ44+TRjIVGEOy2Mu06mMMz0HPMFuRsBzl5t0Kajp3vmn8FkkpS9wH5982VPi6hPYVTb7QJo5Qg==,
       }
     engines: { node: '>=10' }
     cpu: [x64]
@@ -1484,24 +1484,24 @@ packages:
     dev: true
     optional: true
 
-  /@swc/core/1.3.26:
+  /@swc/core/1.3.27:
     resolution:
       {
-        integrity: sha512-U7vEsaLn3IGg0XCRLJX/GTkK9WIfFHUX5USdrp1L2QD29sWPe25HqNndXmUR9KytzKmpDMNoUuHyiuhpVrnNeQ==,
+        integrity: sha512-praRNgpeYGvwDIm/Cl6JU+yHMvwVraL0U6ejMgGyzvpcm1FVsZd1/EYXGqzbBJ0ALv7Gx4eK56h4GnwV6d4L0w==,
       }
     engines: { node: '>=10' }
     requiresBuild: true
     optionalDependencies:
-      '@swc/core-darwin-arm64': 1.3.26
-      '@swc/core-darwin-x64': 1.3.26
-      '@swc/core-linux-arm-gnueabihf': 1.3.26
-      '@swc/core-linux-arm64-gnu': 1.3.26
-      '@swc/core-linux-arm64-musl': 1.3.26
-      '@swc/core-linux-x64-gnu': 1.3.26
-      '@swc/core-linux-x64-musl': 1.3.26
-      '@swc/core-win32-arm64-msvc': 1.3.26
-      '@swc/core-win32-ia32-msvc': 1.3.26
-      '@swc/core-win32-x64-msvc': 1.3.26
+      '@swc/core-darwin-arm64': 1.3.27
+      '@swc/core-darwin-x64': 1.3.27
+      '@swc/core-linux-arm-gnueabihf': 1.3.27
+      '@swc/core-linux-arm64-gnu': 1.3.27
+      '@swc/core-linux-arm64-musl': 1.3.27
+      '@swc/core-linux-x64-gnu': 1.3.27
+      '@swc/core-linux-x64-musl': 1.3.27
+      '@swc/core-win32-arm64-msvc': 1.3.27
+      '@swc/core-win32-ia32-msvc': 1.3.27
+      '@swc/core-win32-x64-msvc': 1.3.27
     dev: true
 
   /@types/is-ci/3.0.0:
@@ -1593,7 +1593,7 @@ packages:
     peerDependencies:
       vite: ^4
     dependencies:
-      '@swc/core': 1.3.26
+      '@swc/core': 1.3.27
       vite: 4.0.4
     dev: true
 
@@ -1802,7 +1802,7 @@ packages:
     engines: { node: ^6 || ^7 || ^8 || ^9 || ^10 || ^11 || ^12 || >=13.7 }
     hasBin: true
     dependencies:
-      caniuse-lite: 1.0.30001444
+      caniuse-lite: 1.0.30001445
       electron-to-chromium: 1.4.284
       node-releases: 2.0.8
       update-browserslist-db: 1.0.10_browserslist@4.21.4
@@ -1865,10 +1865,10 @@ packages:
     engines: { node: '>=6' }
     dev: true
 
-  /caniuse-lite/1.0.30001444:
+  /caniuse-lite/1.0.30001445:
     resolution:
       {
-        integrity: sha512-ecER9xgJQVMqcrxThKptsW0pPxSae8R2RB87LNa+ivW9ppNWRHEplXcDzkCOP4LYWGj8hunXLqaiC41iBATNyg==,
+        integrity: sha512-8sdQIdMztYmzfTMO6KfLny878Ln9c2M0fc7EH60IjlP4Dc4PiCy7K2Vl3ITmWgOyPgVQKa5x+UP/KqFsxj4mBg==,
       }
 
   /chalk/2.4.2:
@@ -4030,16 +4030,16 @@ packages:
       which-pm: 2.0.0
     dev: true
 
-  /prettier/2.8.2:
+  /prettier/2.8.3:
     resolution:
       {
-        integrity: sha512-BtRV9BcncDyI2tsuS19zzhzoxD8Dh8LiCx7j7tHzrkz8GFXAexeWFdi22mjE1d16dftH2qNaytVxqiRTGlMfpw==,
+        integrity: sha512-tJ/oJ4amDihPoufT5sM0Z1SKEuKay8LfVAMlbbhnnkvt6BUserZylqo2PN+p9KeljLr0OHa2rXHU1T8reeoTrw==,
       }
     engines: { node: '>=10.13.0' }
     hasBin: true
     dev: true
 
-  /pretty-quick/3.1.3_prettier@2.8.2:
+  /pretty-quick/3.1.3_prettier@2.8.3:
     resolution:
       {
         integrity: sha512-kOCi2FJabvuh1as9enxYmrnBC6tVMoVOenMaBqRfsvBHB0cbpYHjdQEpSglpASDFEXVwplpcGR4CLEaisYAFcA==,
@@ -4055,7 +4055,7 @@ packages:
       ignore: 5.2.4
       mri: 1.2.0
       multimatch: 4.0.0
-      prettier: 2.8.2
+      prettier: 2.8.3
     dev: true
 
   /pseudomap/1.0.2:
