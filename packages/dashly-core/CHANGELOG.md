@@ -1,5 +1,11 @@
 # @dashly/core
 
+## 0.4.5
+
+### Patch Changes
+
+- 5aee04d: revert tsup config
+
 ## 0.4.4
 
 ### Patch Changes
