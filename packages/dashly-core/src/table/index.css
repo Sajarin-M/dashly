@@ -5,12 +5,8 @@
   flex-direction: column;
 }
 
-.virtual-row-wrapper:not(:first-child) {
-  padding-top: 0.3rem;
-}
-
-.virtual-row-wrapper:not(:last-child) {
-  padding-bottom: 0.3rem;
+.virtual-row-wrapper:not([data-index='0']) {
+  padding-top: 0.6rem;
 }
 
 .virtual-sl-no {

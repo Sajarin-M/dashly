@@ -1,31 +1,28 @@
 import {
-  CSSProperties,
+  Box,
+  BoxProps,
+  Button,
+  Center,
+  createStyles,
+  Group,
+  Loader,
+  packSx,
+  Stack,
+  Text,
+  TypographyStylesProvider,
+} from '@mantine/core';
+import type { PolymorphicComponentProps } from '@mantine/utils';
+import {
   ComponentProps,
   ComponentType,
-  ReactNode,
+  CSSProperties,
   forwardRef,
+  ReactNode,
   useState,
 } from 'react';
 import { BiWifiOff } from 'react-icons/bi';
 import { FaBookOpen } from 'react-icons/fa';
 import { Components, Virtuoso, VirtuosoProps } from 'react-virtuoso';
-import {
-  Box,
-  BoxProps,
-  Button,
-  Center,
-  Group,
-  Loader,
-  Stack,
-  Text,
-  TypographyStylesProvider,
-  createStyles,
-  packSx,
-  MantineTheme,
-  CSSObject,
-  useMantineTheme,
-} from '@mantine/core';
-import type { PolymorphicComponentProps } from '@mantine/utils';
 import type { Object } from 'ts-toolbelt';
 import type { AvatarProps } from '../avatar';
 import { Menu, MenuButton, MenuItem, menuItems } from '../menu';
@@ -88,7 +85,7 @@ export type TableProps<T> = Omit<
   loadMore?: LoadMoreProps;
   columns: TableColumn<T>[];
   onRowClick?: RowHandlerFn<T>;
-  components?: Omit<Components<unknown, TableContext>, 'Item'> & {
+  components?: Omit<Components<T, TableContext>, 'Item'> & {
     StickyHeader?: ReactNode;
     StickyFooter?: ReactNode;
   };
@@ -226,9 +223,7 @@ const TableRow = forwardRef<HTMLDivElement, TableRowProps>(
   },
 );
 
-const PerfomantTableRow = forwardRef<HTMLDivElement, BoxComponentProps>((props, ref) => {
-  return <Box ref={ref} {...props} />;
-});
+const PerfomantTableRow = (props: ComponentProps<'div'>) => <div {...props} />;
 
 function TableHeader({ style, ...rest }: BoxComponentProps) {
   return (
@@ -446,7 +441,7 @@ export function createTableComponent({
 
     const { classes } = useStyles({
       gridColumns,
-      activeTransition: onRowClick !== undefined,
+      activeTransition: enableActiveStyles,
     });
 
     if (!isOnline) {
