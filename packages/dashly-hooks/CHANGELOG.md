@@ -1,5 +1,11 @@
 # @dashly/hooks
 
+## 0.4.7
+
+### Patch Changes
+
+- 29b7a10: [core] : improve table component
+
 ## 0.4.6
 
 ### Patch Changes
