@@ -1,5 +1,11 @@
 # @dashly/core
 
+## 0.4.11
+
+### Patch Changes
+
+- b7aab50: [core] : improve table component
+
 ## 0.4.10
 
 ### Patch Changes
