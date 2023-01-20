@@ -21,6 +21,9 @@ import {
   TypographyStylesProvider,
   createStyles,
   packSx,
+  MantineTheme,
+  CSSObject,
+  useMantineTheme,
 } from '@mantine/core';
 import type { PolymorphicComponentProps } from '@mantine/utils';
 import type { Object } from 'ts-toolbelt';
@@ -52,11 +55,11 @@ export type TableColumn<T> = Object.AtLeast<
 type RowHandlerFn<T, R = void> = (row: T) => R;
 
 export type TableContext = {
-  height: number;
   loadMore?: LoadMoreProps;
 };
 
 export type LoadMoreProps = {
+  footerHeight: number;
   isError: boolean;
   isLoading: boolean;
   load: VoidFunction;
@@ -148,12 +151,6 @@ function renderCell<T>(rowData: T, column: TableColumn<T>, index: number) {
 
 type BoxComponentProps = PolymorphicComponentProps<'div', BoxProps>;
 
-type TableRowProps = BoxComponentProps & {
-  highlightOnHover?: boolean;
-  withBorder?: boolean;
-  vAlign?: CSSProperties['alignItems'];
-};
-
 type TableMenuProps<T> = {
   row: T;
   menuFn: RowHandlerFn<T, MenuItem[]>;
@@ -163,6 +160,12 @@ type CreateTableComponentProps = {
   getImageUrl: (name: string) => string;
   renderImageOnScroll: (url: string) => boolean;
   AvatarComponent: (props: Pick<AvatarProps, 'text' | 'src'>) => JSX.Element;
+};
+
+type TableRowProps = BoxComponentProps & {
+  highlightOnHover?: boolean;
+  withBorder?: boolean;
+  vAlign?: CSSProperties['alignItems'];
 };
 
 const TableRow = forwardRef<HTMLDivElement, TableRowProps>(
@@ -203,6 +206,41 @@ const TableRow = forwardRef<HTMLDivElement, TableRowProps>(
     );
   },
 );
+
+const PerfomantTableRow = forwardRef<HTMLDivElement, BoxComponentProps>((props, ref) => {
+  return <Box ref={ref} {...props} />;
+});
+
+const getPerfomantTableStyles = (
+  theme: MantineTheme,
+  gridColumns: string,
+  activeTransition: boolean,
+) => {
+  const colors = {
+    bg: { dark: theme.colors.dark[5], light: theme.colors.gray[1] },
+    hover: { dark: theme.colors.dark[4], light: theme.colors.gray[2] },
+    border: { dark: '1px solid #373A40', light: '1px solid #dee2e6' },
+  };
+
+  const sx: CSSObject = {
+    display: 'grid',
+    gridTemplateColumns: gridColumns,
+    columnGap: '1rem',
+    alignItems: 'center',
+    padding: '0.5rem 1rem',
+    borderRadius: theme.radius.md,
+    backgroundColor: colors.bg[theme.colorScheme],
+    '&:hover': {
+      backgroundColor: colors.hover[theme.colorScheme],
+    },
+  };
+
+  if (activeTransition) {
+    sx['&:active'] = theme.activeStyles;
+  }
+
+  return sx;
+};
 
 function TableHeader({ style, ...rest }: BoxComponentProps) {
   return (
@@ -282,7 +320,7 @@ const LoadingMoreFooter: ComponentType<{ context?: TableContext }> = ({ context 
   if (
     !context ||
     !context.loadMore ||
-    !context.height ||
+    !context.loadMore.footerHeight ||
     !(context.loadMore.isLoading || context.loadMore.isError)
   )
     return null;
@@ -293,7 +331,7 @@ const LoadingMoreFooter: ComponentType<{ context?: TableContext }> = ({ context 
       highlightOnHover={false}
       sx={(theme) => ({
         placeItems: 'center',
-        height: context.height,
+        height: context.loadMore?.footerHeight,
         ...(context.loadMore!.isError && {
           backgroundColor: theme.colors.red[1],
         }),
@@ -346,13 +384,13 @@ export function createTableComponent({
     increaseViewportBy = 100,
     atBottomThreshold = 400,
     noDataMessage = 'No data found',
-    components: { StickyFooter, StickyHeader, Footer, ...restComponents } = {},
+    components: { StickyFooter, StickyHeader, Footer = LoadingMoreFooter, ...restComponents } = {},
     ...rest
   }: TableProps<T>) {
     const isOnline = useOnlineStatus();
     const [isScrolling, setIsScrolling] = useState(false);
+    const theme = useMantineTheme();
     const { classes } = useStyles();
-    const [height, setHeight] = useState(0);
 
     if (!isOnline) {
       return (
@@ -399,6 +437,7 @@ export function createTableComponent({
     let serialHeader: ReactNode = undefined;
     let SerialComponent: any = EmptySeriealNo;
     let onListScrolled: ((isScrolling: boolean) => void) | undefined = undefined;
+    let enableActiveStyles = false;
 
     if (menu) {
       gridColumns += ' ' + ColumnSizes.Menu;
@@ -418,6 +457,7 @@ export function createTableComponent({
         }
         if (onRowClick) {
           const oldMenuFn = menuFn;
+          enableActiveStyles = true;
           menuFn = (row) => [
             {
               icon: <FaBookOpen />,
@@ -458,12 +498,7 @@ export function createTableComponent({
       gridColumns = ColumnSizes.Serial + ' ' + gridColumns;
     }
 
-    const refFns = [
-      (node: HTMLDivElement | null) => {
-        const newHeight = node?.getBoundingClientRect().height;
-        if (newHeight) setHeight(newHeight);
-      },
-    ];
+    const rowSx = getPerfomantTableStyles(theme, gridColumns, enableActiveStyles);
 
     return (
       <TypographyStylesProvider className='virtual-wrapper'>
@@ -491,7 +526,7 @@ export function createTableComponent({
             {...rest}
             data={data}
             isScrolling={onListScrolled}
-            context={{ height, loadMore }}
+            context={{ loadMore }}
             className={classes.virtualBody}
             atBottomStateChange={(atBottom) => {
               if (atBottom) loadMore?.load();
@@ -499,19 +534,13 @@ export function createTableComponent({
             atBottomThreshold={atBottomThreshold}
             increaseViewportBy={increaseViewportBy}
             components={{
+              Footer: Footer,
               Item: TableRowWrapper,
-              Footer: Footer || LoadingMoreFooter,
               ...restComponents,
             }}
             itemContent={(index, rowData) => {
               return (
-                <TableRow
-                  ref={refFns[index]}
-                  style={{
-                    gridTemplateColumns: gridColumns,
-                  }}
-                  onClick={onRowClick ? () => onRowClick(rowData) : undefined}
-                >
+                <PerfomantTableRow sx={rowSx} onClick={() => onRowClick?.(rowData)}>
                   <SerialComponent slno={index + 1} />
                   {columns.map((column) => (
                     <div key={column.key || column.name} style={column.style} className='truncate'>
@@ -519,7 +548,7 @@ export function createTableComponent({
                     </div>
                   ))}
                   <MenuComponent row={rowData} menuFn={menuFn} />
-                </TableRow>
+                </PerfomantTableRow>
               );
             }}
           />
