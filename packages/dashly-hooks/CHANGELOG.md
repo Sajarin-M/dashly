@@ -1,5 +1,11 @@
 # @dashly/hooks
 
+## 0.4.9
+
+### Patch Changes
+
+- 3a951e1: [core/table] : change styling method
+
 ## 0.4.8
 
 ### Patch Changes
