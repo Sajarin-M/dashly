@@ -411,7 +411,7 @@ export function createTableComponent({
       );
     }
 
-    if (isError && !loadMore?.isError) {
+    if (isError) {
       return (
         <InfoWrapper>
           <Stack align='center'>
