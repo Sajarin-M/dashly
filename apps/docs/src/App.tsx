@@ -8,9 +8,6 @@ const { Table } = createTableComponent({
   getImageUrl: () => '',
   AvatarComponent: Avatar,
   renderImageOnScroll: () => true,
-  atBottomThreshold: 300,
-  increaseViewportBy: 100,
-  overscan: 5,
 });
 
 const generateUser = (count: number) => ({

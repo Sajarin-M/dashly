@@ -175,10 +175,7 @@ type TableMenuProps<T> = {
   menuFn: RowHandlerFn<T, MenuItem[]>;
 };
 
-type CreateTableComponentProps = Pick<
-  VirtuosoProps<unknown, unknown>,
-  'overscan' | 'increaseViewportBy' | 'atBottomThreshold'
-> & {
+type CreateTableComponentProps = {
   getImageUrl: (name: string) => string;
   renderImageOnScroll: (url: string) => boolean;
   AvatarComponent: (props: Pick<AvatarProps, 'text' | 'src'>) => JSX.Element;
@@ -356,11 +353,8 @@ function SerialNo({ slno }: { slno: number }) {
 
 export function createTableComponent({
   getImageUrl,
-  AvatarComponent,
   renderImageOnScroll,
-  overscan: defaultOverscan = undefined,
-  atBottomThreshold: defaultAtBottomThreshold = undefined,
-  increaseViewportBy: deafultIncreaseViewportBy = undefined,
+  AvatarComponent,
 }: CreateTableComponentProps) {
   function Table<T>({
     menu,
@@ -375,9 +369,9 @@ export function createTableComponent({
     gridColumns,
     showHeader = true,
     showSerialNo = true,
+    increaseViewportBy = 100,
+    atBottomThreshold = 400,
     noDataMessage = 'No data found',
-    atBottomThreshold = defaultAtBottomThreshold,
-    increaseViewportBy = deafultIncreaseViewportBy,
     components: { StickyFooter, StickyHeader, Footer = LoadingMoreFooter, ...restComponents } = {},
     ...rest
   }: TableProps<T>) {
