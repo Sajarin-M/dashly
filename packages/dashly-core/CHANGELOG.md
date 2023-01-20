@@ -1,5 +1,11 @@
 # @dashly/core
 
+## 0.4.8
+
+### Patch Changes
+
+- b99cf36: [core] : allow passing some defualt props to table on creation
+
 ## 0.4.7
 
 ### Patch Changes
