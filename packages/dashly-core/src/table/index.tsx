@@ -105,37 +105,56 @@ export enum ColumnSizes {
   Avatar = '3.8rem',
 }
 
-const useStyles = createStyles((theme) => {
-  let commonBg = theme.black;
-  let trackBg = theme.colors.gray[4];
+const useStyles = createStyles(
+  (
+    theme,
+    { gridColumns, activeTransition }: { gridColumns: string; activeTransition: boolean },
+  ) => {
+    const colors = {
+      bg: { dark: theme.colors.dark[5], light: theme.colors.gray[1] },
+      hover: { dark: theme.colors.dark[4], light: theme.colors.gray[2] },
+      border: { dark: '1px solid #373A40', light: '1px solid #dee2e6' },
+      commonBg: { dark: theme.white, light: theme.black },
+      trackBg: { dark: theme.colors.gray[7], light: theme.colors.gray[4] },
+    };
 
-  if (theme.colorScheme === 'dark') {
-    commonBg = theme.white;
-    trackBg = theme.colors.gray[7];
-  }
+    return {
+      virtualBody: {
+        overflowY: 'overlay !important' as any,
 
-  return {
-    virtualBody: {
-      overflowY: 'overlay !important' as any,
-
-      '&::-webkit-scrollbar-track': {
-        borderRadius: theme.radius.md,
-        backgroundColor: theme.fn.rgba(trackBg, 0.8),
-      },
-      '&::-webkit-scrollbar': {
-        width: 8,
-        borderRadius: theme.radius.md,
-      },
-      '&::-webkit-scrollbar-thumb': {
-        backgroundColor: theme.fn.rgba(commonBg, 0.3),
-        borderRadius: theme.radius.md,
-        '&:hover': {
-          backgroundColor: theme.fn.rgba(commonBg, 0.4),
+        '&::-webkit-scrollbar-track': {
+          borderRadius: theme.radius.md,
+          backgroundColor: theme.fn.rgba(colors.trackBg[theme.colorScheme], 0.8),
+        },
+        '&::-webkit-scrollbar': {
+          width: 8,
+          borderRadius: theme.radius.md,
+        },
+        '&::-webkit-scrollbar-thumb': {
+          backgroundColor: theme.fn.rgba(colors.commonBg[theme.colorScheme], 0.3),
+          borderRadius: theme.radius.md,
+          '&:hover': {
+            backgroundColor: theme.fn.rgba(colors.commonBg[theme.colorScheme], 0.4),
+          },
         },
       },
-    },
-  };
-});
+
+      virtualRow: {
+        display: 'grid',
+        gridTemplateColumns: gridColumns,
+        columnGap: '1rem',
+        alignItems: 'center',
+        padding: '0.5rem 1rem',
+        borderRadius: theme.radius.md,
+        backgroundColor: colors.bg[theme.colorScheme],
+        '&:hover': {
+          backgroundColor: colors.hover[theme.colorScheme],
+        },
+        '&:active': activeTransition ? theme.activeStyles : {},
+      },
+    };
+  },
+);
 
 function renderCell<T>(rowData: T, column: TableColumn<T>, index: number) {
   if ('path' in column) {
@@ -213,37 +232,6 @@ const TableRow = forwardRef<HTMLDivElement, TableRowProps>(
 const PerfomantTableRow = forwardRef<HTMLDivElement, BoxComponentProps>((props, ref) => {
   return <Box ref={ref} {...props} />;
 });
-
-const getPerfomantTableStyles = (
-  theme: MantineTheme,
-  gridColumns: string,
-  activeTransition: boolean,
-) => {
-  const colors = {
-    bg: { dark: theme.colors.dark[5], light: theme.colors.gray[1] },
-    hover: { dark: theme.colors.dark[4], light: theme.colors.gray[2] },
-    border: { dark: '1px solid #373A40', light: '1px solid #dee2e6' },
-  };
-
-  const sx: CSSObject = {
-    display: 'grid',
-    gridTemplateColumns: gridColumns,
-    columnGap: '1rem',
-    alignItems: 'center',
-    padding: '0.5rem 1rem',
-    borderRadius: theme.radius.md,
-    backgroundColor: colors.bg[theme.colorScheme],
-    '&:hover': {
-      backgroundColor: colors.hover[theme.colorScheme],
-    },
-  };
-
-  if (activeTransition) {
-    sx['&:active'] = theme.activeStyles;
-  }
-
-  return sx;
-};
 
 function TableHeader({ style, ...rest }: BoxComponentProps) {
   return (
@@ -370,9 +358,9 @@ export function createTableComponent({
   getImageUrl,
   AvatarComponent,
   renderImageOnScroll,
-  overscan: defaultOverscan,
-  atBottomThreshold: defaultAtBottomThreshold,
-  increaseViewportBy: deafultIncreaseViewportBy,
+  overscan: defaultOverscan = undefined,
+  atBottomThreshold: defaultAtBottomThreshold = undefined,
+  increaseViewportBy: deafultIncreaseViewportBy = undefined,
 }: CreateTableComponentProps) {
   function Table<T>({
     menu,
@@ -388,7 +376,6 @@ export function createTableComponent({
     showHeader = true,
     showSerialNo = true,
     noDataMessage = 'No data found',
-    overscan = defaultOverscan,
     atBottomThreshold = defaultAtBottomThreshold,
     increaseViewportBy = deafultIncreaseViewportBy,
     components: { StickyFooter, StickyHeader, Footer = LoadingMoreFooter, ...restComponents } = {},
@@ -396,48 +383,6 @@ export function createTableComponent({
   }: TableProps<T>) {
     const isOnline = useOnlineStatus();
     const [isScrolling, setIsScrolling] = useState(false);
-    const theme = useMantineTheme();
-    const { classes } = useStyles();
-
-    if (!isOnline) {
-      return (
-        <InfoWrapper>
-          <Stack align='center'>
-            <BiWifiOff size={25} />
-            <Text>Please check your internet connection</Text>
-          </Stack>
-        </InfoWrapper>
-      );
-    }
-
-    if (isLoading) {
-      return (
-        <InfoWrapper>
-          <Loader />
-        </InfoWrapper>
-      );
-    }
-
-    if (isError) {
-      return (
-        <InfoWrapper>
-          <Stack align='center'>
-            <Text>Something went wrong while loading the page</Text>
-            <Button color='red.6' onClick={reset}>
-              Retry
-            </Button>
-          </Stack>
-        </InfoWrapper>
-      );
-    }
-
-    if (data.length === 0 && !StickyHeader && !StickyFooter) {
-      return (
-        <InfoWrapper>
-          <Text>{noDataMessage}</Text>
-        </InfoWrapper>
-      );
-    }
 
     let menuFn: RowHandlerFn<T, MenuItem[]>;
     let MenuComponent: any = EmptyTableMenu;
@@ -505,7 +450,50 @@ export function createTableComponent({
       gridColumns = ColumnSizes.Serial + ' ' + gridColumns;
     }
 
-    const rowSx = getPerfomantTableStyles(theme, gridColumns, enableActiveStyles);
+    const { classes } = useStyles({
+      gridColumns,
+      activeTransition: onRowClick !== undefined,
+    });
+
+    if (!isOnline) {
+      return (
+        <InfoWrapper>
+          <Stack align='center'>
+            <BiWifiOff size={25} />
+            <Text>Please check your internet connection</Text>
+          </Stack>
+        </InfoWrapper>
+      );
+    }
+
+    if (isLoading) {
+      return (
+        <InfoWrapper>
+          <Loader />
+        </InfoWrapper>
+      );
+    }
+
+    if (isError) {
+      return (
+        <InfoWrapper>
+          <Stack align='center'>
+            <Text>Something went wrong while loading the page</Text>
+            <Button color='red.6' onClick={reset}>
+              Retry
+            </Button>
+          </Stack>
+        </InfoWrapper>
+      );
+    }
+
+    if (data.length === 0 && !StickyHeader && !StickyFooter) {
+      return (
+        <InfoWrapper>
+          <Text>{noDataMessage}</Text>
+        </InfoWrapper>
+      );
+    }
 
     return (
       <TypographyStylesProvider className='virtual-wrapper'>
@@ -532,7 +520,6 @@ export function createTableComponent({
           <Virtuoso
             {...rest}
             data={data}
-            overscan={overscan}
             isScrolling={onListScrolled}
             context={{ loadMore }}
             className={classes.virtualBody}
@@ -548,7 +535,10 @@ export function createTableComponent({
             }}
             itemContent={(index, rowData) => {
               return (
-                <PerfomantTableRow sx={rowSx} onClick={() => onRowClick?.(rowData)}>
+                <PerfomantTableRow
+                  className={classes.virtualRow}
+                  onClick={() => onRowClick?.(rowData)}
+                >
                   <SerialComponent slno={index + 1} />
                   {columns.map((column) => (
                     <div key={column.key || column.name} style={column.style} className='truncate'>
