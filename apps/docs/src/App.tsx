@@ -35,14 +35,15 @@ export default function App() {
         data={users}
         avatar={{ name: (u) => u.name }}
         gridColumns='20% 12rem 1fr'
+        onRowClick={(row) => console.log('row click', row)}
         columns={[
           { name: 'Name', path: 'name' },
           { name: 'Roll No', path: 'rollNo' },
           { name: 'About', path: 'about' },
         ]}
         menu={{
-          onEdit: console.log,
-          onDelete: console.log,
+          onEdit: (row) => console.log('edit', row),
+          onDelete: (row) => console.log('delete', row),
         }}
       />
     </div>
