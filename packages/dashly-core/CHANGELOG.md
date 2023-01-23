@@ -1,5 +1,11 @@
 # @dashly/core
 
+## 0.4.12
+
+### Patch Changes
+
+- ddfa038: [core] : export row spacing as a variable
+
 ## 0.4.11
 
 ### Patch Changes
