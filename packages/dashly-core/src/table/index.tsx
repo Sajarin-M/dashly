@@ -102,6 +102,8 @@ export enum ColumnSizes {
   Avatar = '3.8rem',
 }
 
+export const ROW_SPACING = '0.6rem';
+
 const useStyles = createStyles(
   (
     theme,
@@ -310,7 +312,7 @@ const LoadingMoreFooter: ComponentType<{ context?: TableContext }> = ({ context 
 
   return (
     <TableRow
-      mt='0.6rem'
+      mt={ROW_SPACING}
       highlightOnHover={false}
       sx={(theme) => ({
         placeItems: 'center',
