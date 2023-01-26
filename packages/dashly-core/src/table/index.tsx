@@ -160,7 +160,7 @@ function renderCell<T>(rowData: T, column: TableColumn<T>, index: number) {
   if ('path' in column) {
     const value = rowData[column.path] as unknown as string;
     return (
-      <div className='truncate' title={value}>
+      <div className='virtual-truncate' title={value}>
         {value}
       </div>
     );
@@ -542,7 +542,7 @@ export function createTableComponent({
                       <div
                         key={column.key || column.name}
                         style={column.style}
-                        className={'truncate ' + columnClassname}
+                        className={'virtual-truncate ' + columnClassname}
                       >
                         {renderCell(rowData, column, index)}
                       </div>
