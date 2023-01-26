@@ -14,8 +14,23 @@
   margin-left: 7px;
 }
 
-.truncate {
+.virtual-truncate {
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
+}
+
+.virtual-hAlign-center {
+  text-align: center;
+  justify-content: center;
+}
+
+.virtual-hAlign-end {
+  text-align: end;
+  justify-content: end;
+}
+
+.virtual-hAlign-start {
+  text-align: start;
+  justify-content: start;
 }

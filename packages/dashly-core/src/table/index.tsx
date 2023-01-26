@@ -34,10 +34,11 @@ interface FCWithChildren {
   children?: ReactNode;
 }
 
-export type TableColumn<T> = Object.AtLeast<
+export type TableColumn<T = any> = Object.AtLeast<
   {
     key?: string;
     name?: string;
+    hAlign?: 'start' | 'center' | 'end';
     style?: CSSProperties;
   },
   'name' | 'key'
@@ -49,7 +50,7 @@ export type TableColumn<T> = Object.AtLeast<
       }
   );
 
-type RowHandlerFn<T, R = void> = (row: T) => R;
+type RowHandlerFn<T = any, R = void> = (row: T) => R;
 
 export type TableContext = {
   loadMore?: LoadMoreProps;
@@ -63,14 +64,14 @@ export type LoadMoreProps = {
   retry: VoidFunction;
 };
 
-export type TableMenu<T> =
+export type TableMenu<T = any> =
   | {
       onEdit: RowHandlerFn<T>;
       onDelete: RowHandlerFn<T>;
     }
   | RowHandlerFn<T, MenuItem[]>;
 
-export type TableProps<T> = Omit<
+export type TableProps<T = any> = Omit<
   VirtuosoProps<T, TableContext>,
   'className' | 'components' | 'itemContent' | 'isScrolling' | 'atBottomStateChange'
 > & {
@@ -496,7 +497,11 @@ export function createTableComponent({
           >
             {serialHeader}
             {columns.map((column) => (
-              <div key={column.key || column.name} style={column.style}>
+              <div
+                key={column.key || column.name}
+                style={column.style}
+                className={'virtual-hAlign-' + column.hAlign}
+              >
                 {column.name}
               </div>
             ))}
@@ -531,11 +536,18 @@ export function createTableComponent({
                   onClick={() => onRowClick?.(rowData)}
                 >
                   <SerialComponent slno={index + 1} />
-                  {columns.map((column) => (
-                    <div key={column.key || column.name} style={column.style} className='truncate'>
-                      {renderCell(rowData, column, index)}
-                    </div>
-                  ))}
+                  {columns.map((column) => {
+                    const columnClassname = 'virtual-hAlign-' + column.hAlign;
+                    return (
+                      <div
+                        key={column.key || column.name}
+                        style={column.style}
+                        className={'truncate ' + columnClassname}
+                      >
+                        {renderCell(rowData, column, index)}
+                      </div>
+                    );
+                  })}
                   <MenuComponent row={rowData} menuFn={menuFn} />
                 </PerfomantTableRow>
               );

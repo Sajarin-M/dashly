@@ -38,7 +38,7 @@ export default function App() {
         onRowClick={(row) => console.log('row click', row)}
         columns={[
           { name: 'Name', path: 'name' },
-          { name: 'Roll No', path: 'rollNo' },
+          { name: 'Roll No', path: 'rollNo', hAlign: 'end' },
           { name: 'About', path: 'about' },
         ]}
         menu={{
