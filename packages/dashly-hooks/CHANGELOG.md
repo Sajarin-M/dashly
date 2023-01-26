@@ -1,5 +1,11 @@
 # @dashly/hooks
 
+## 0.4.13
+
+### Patch Changes
+
+- 799602d: [core/table] : add hAlign column property
+
 ## 0.4.12
 
 ### Patch Changes
